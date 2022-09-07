@@ -6,10 +6,11 @@ const ReturnScheme = new mongoose.Schema(
       {
         fullname: { type: String, required: true },
         adress: { type: String, required: true },
-        employeeName: { type: Number, required: true },
+        employeeName: { type: String, required: true },
         retunItem: { type: String, required: true },
-        returnItemNo: { type: Number, required: true },
-        Paid: { type: Number, required: true }
+        returnItemNo: { type: String, required: true },
+        Paid: { type: String, required: true },
+        reason: { type: String, required: true }
       },
     ]
 }
