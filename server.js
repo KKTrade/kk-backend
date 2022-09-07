@@ -30,7 +30,15 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Credentials", "true");
   res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
   res.header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+  res.sendStatus(200);
   next();
+});
+
+app.options("/api/*", (req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://kktradingweb.web.app');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');        
+  res.sendStatus(200);
 });
 
 app.get('/api/keys/paypal', (req, res) => {
