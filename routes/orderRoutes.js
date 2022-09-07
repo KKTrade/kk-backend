@@ -37,6 +37,22 @@ orderRouter.post(
   })
 );
 
+orderRouter.post(isAuth,'/returns',async(req,res)=>{
+
+  const newReturn = new Return({
+    fullname: req.body.fullname,
+    adress: req.body.address,
+    employeeName: req.body.employee,
+    returnItem: req.body.returnItem,
+    returnItemNo: req.body.returnItemNo,
+    Paid: req.body.Paid,
+  });
+
+  const Return = await newReturn.save();
+  res.status(201).send({ message: 'New Return Created', Return });
+
+})
+
 orderRouter.get(
   '/summary',
   isAuth,
