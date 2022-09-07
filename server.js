@@ -7,8 +7,8 @@ import productRouter from './routes/productRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import orderRouter from './routes/orderRoutes.js';
 import uploadRouter from './routes/uploadRoutes.js';
+import cors from 'cors';
 
-const cors = require('cors');
 
 dotenv.config();
 
