@@ -7,7 +7,7 @@ import productRouter from './routes/productRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import orderRouter from './routes/orderRoutes.js';
 import uploadRouter from './routes/uploadRoutes.js';
-import cors from 'cors'
+const cors = require('cors');
 
 dotenv.config();
 
@@ -20,18 +20,18 @@ mongoose
     console.log(err.message);
   });
 
+
   var corsOptions = {
-    origin: 'https://kktradingweb.web.app',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+    origin: 'https://kktradingweb.web.app'
   }
 
+  
+  const app = express();
+  
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
   app.use(cors(corsOptions));
-
-const app = express();
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
+  
 
 
 app.get('/api/keys/paypal', (req, res) => {
