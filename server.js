@@ -7,7 +7,6 @@ import productRouter from './routes/productRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import orderRouter from './routes/orderRoutes.js';
 import uploadRouter from './routes/uploadRoutes.js';
-const cors = require('cors');
 
 dotenv.config();
 
@@ -20,19 +19,19 @@ mongoose
     console.log(err.message);
   });
 
+const app = express();
 
-  var corsOptions = {
-    origin: 'https://kktradingweb.web.app'
-  }
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-  
-  const app = express();
-  
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
-  app.use(cors(corsOptions));
-  
-
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "https://kktradingweb.web.app");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+  res.header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+  next();
+});
 
 app.get('/api/keys/paypal', (req, res) => {
   res.send(process.env.PAYPAL_CLIENT_ID || 'sb');
