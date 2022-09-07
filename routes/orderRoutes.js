@@ -3,6 +3,7 @@ import expressAsyncHandler from 'express-async-handler';
 import Order from '../models/orderModel.js';
 import User from '../models/userModel.js';
 import Product from '../models/productModel.js';
+import Return from '../models/ReturnModals';
 import { isAuth, isAdmin, mailgun, payOrderEmailTemplate } from '../utils.js';
 
 const orderRouter = express.Router();
@@ -48,8 +49,8 @@ orderRouter.post(isAuth,'/returns',async(req,res)=>{
     Paid: req.body.Paid,
   });
 
-  const Return = await newReturn.save();
-  res.status(201).send({ message: 'New Return Created', Return });
+  const Return1 = await newReturn.save();
+  res.status(201).send({ message: 'New Return Created', Return1 });
 
 })
 
