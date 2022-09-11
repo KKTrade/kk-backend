@@ -33,6 +33,20 @@ orderRouter.post(
       user: req.user._id,
     });
 
+    const items = req.body.orderItems.map((x) => ({ ...x, product: x._id }))
+
+
+    items.map(async (x) => {
+      const product = await Product.findById(x._id);
+      if (product) {
+        product.countInStock = product.countInStock - x.quantity;
+        Product.findById(x._id).updateOne({ countInStock: product.countInStock - x.quantity })
+        await product.save();
+        console.log("success");
+      }
+    })
+
+
     const order = await newOrder.save();
     res.status(201).send({ message: 'New Order Created', order });
   })
@@ -52,7 +66,7 @@ orderRouter.post(
       Paid: req.body.Paid,
       reason: req.body.reason
     });
-  
+
     const Return1 = await newReturn.save();
     res.status(201).send({ message: 'New Return Created', Return1 });
   })
