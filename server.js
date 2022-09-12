@@ -13,20 +13,6 @@ import cors from 'cors';
 dotenv.config();
 
 
-var whitelist = ['https://kktradingweb.web.app', 'http://localhost:3000']
-var corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  }
-}
-
-cors(corsOptions);
-
-
 
 mongoose
   .connect('mongodb+srv://admin:1234@kktrading.78l2nug.mongodb.net/?retryWrites=true&w=majority')
@@ -43,7 +29,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "https://kktradingweb.web.app");
+  res.header("Access-Control-Allow-Origin", "https://kktradingweb.web.app", "http://localhost:3000");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
