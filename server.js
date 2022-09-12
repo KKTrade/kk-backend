@@ -12,6 +12,22 @@ import cors from 'cors';
 
 dotenv.config();
 
+
+var whitelist = ['https://kktradingweb.web.app', 'http://localhost:3000']
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+
+cors(corsOptions);
+
+
+
 mongoose
   .connect('mongodb+srv://admin:1234@kktrading.78l2nug.mongodb.net/?retryWrites=true&w=majority')
   .then(() => {
