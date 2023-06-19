@@ -18,7 +18,7 @@ const corsWhitelist = [
 ];
 
 mongoose
-  .connect('mongodb+srv://admin:1234@kktrading.78l2nug.mongodb.net/?retryWrites=true&w=majority')
+  .connect('mongodb+srv://harikrishnan9a:fgjE4u0vPw3aBuJx@kktrading.bjezhfm.mongodb.net/?retryWrites=true&w=majority')
   .then(() => {
     console.log('connected to db');
   })
@@ -67,7 +67,7 @@ app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
 });
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4500;
 app.listen(port, () => {
   console.log(`serve at http://localhost:${port}`);
 });
