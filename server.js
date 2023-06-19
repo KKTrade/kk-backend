@@ -13,7 +13,7 @@ import cors from 'cors';
 dotenv.config();
 
 const corsWhitelist = [
-  'https://kktradingweb.web.app',
+  'https://kktradingweb.vercel.app',
   'http://localhost:3000'
 ];
 
@@ -60,7 +60,7 @@ app.use('/api/orders', orderRouter);
 const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, '/frontend/build')));
 app.get('*', (req, res) =>
-  res.sendFile(path.join(__dirname, '/frontend/build/index.html'))
+  res.send("hi")
 );
 
 app.use((err, req, res, next) => {
